@@ -12,7 +12,12 @@
     <ctfshow>&payload;</ctfshow>
 </root>
 ```
-DTD 可以定义 XML 文件的标签格式，也可以定义一个实体来访问文件
+DTD 可以定义 XML 文件的标签格式，也可以定义一个实体来访问文件。
+
+
+```
+&payload;
+```
 
 ## 例题 ctfshow web372
 ```php
