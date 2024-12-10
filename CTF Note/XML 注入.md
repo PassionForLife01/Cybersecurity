@@ -14,7 +14,7 @@
 ```
 DTD 可以定义 XML 文件的标签格式，也可以定义一个实体来访问文件。
 
-
+插入 payload
 ```
 &payload;
 ```
@@ -52,7 +52,10 @@ highlight_file(__FILE__);
 libxml_disable_entity_loader(false);
 ```
 
-
+`LIBXML_DTDLOAD` 允许加载 DTD，`LIBXML_NOENT` 允许解析 entity。作位或运算代表两个合并。这个允许我们进行 XXE 注入。
+```
+$dom->loadXML($xmlfile, LIBXML_NOENT | LIBXML_DTDLOAD);
+```
 
 注意，在这道题中根节点是必要的。根据本地调试，可发现 `$creds` 为：
 ```
