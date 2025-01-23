@@ -13,7 +13,7 @@ In other words, when you type `example.com` in your browser, your browser trie
 
 If you want to look up the IP address of the domain from the command line, you can use `lookup`.
 
-```sh
+```
 ┌──(passionforlife㉿kali)-[~/thm]
 └─$ nslookup www.example.com
 Server:         192.168.111.2
