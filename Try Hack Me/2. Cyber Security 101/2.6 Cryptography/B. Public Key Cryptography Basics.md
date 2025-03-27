@@ -108,9 +108,9 @@ There are some excellent tools for defeating RSA challenges in CTFs.
 
 The main variables for RSA in CTFs: $p,\ q,\ n,\ e,\ d,\ m$ and  $c$  
 - $p$ and $q$ are large prime numbers.
-- $n$ is the product of $p$ and $q$
-- The public key is $n$ and $e$
-- The private key is $n$ and $d$
+- $n$ is the product of $p$ and $q$ 
+- The public key is $n$ and $e$ 
+- The private key is $n$ and $d$ 
 - The plaintext is $m$ and ciphertext is $c$ 
 
 CTF gives you with a set of these values, you should try to break the encryption and decrypt a message to retrieve the flag.

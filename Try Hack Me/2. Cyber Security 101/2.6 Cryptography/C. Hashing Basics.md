@@ -88,7 +88,7 @@ A **Rainbow Table** is a lookup table of hashes to plaintexts, so you can quickl
 ### Protecting Against Rainbow Tables
 
 To protect against rainbow tables, we add a salt to the passwords. 
-The salt is a randomly generated value stored in the database and should be unique to each user. 
+**The salt is a randomly generated value stored in the database and should be unique to each user.** 
 
 In theory, you could use the same salt for all users, but duplicate passwords would still have the same hash and a rainbow table could still be created for passwords with that salt.
 
@@ -207,3 +207,49 @@ Offline:
 hashcat -m 1400 -a 0 hash2.txt /usr/share/wordlists/rockyou.txt
 ```
 Check with `man hashcat` and [example page](https://hashcat.net/wiki/doku.php?id=example_hashes).
+
+## Hashing for Integrity Checking
+
+### Integrity Checking
+
+Hash can helps you to check if the file had been changed. 
+
+These are two file's sha256 hash. Check the hash of the file that you downloaded, if they are identical, you can be confident that your file is identical to the official file.
+![[Pasted image 20250124105357.png]]
+
+This feature can also be applied to check if two files are identical. If their sha256 hash are the same, they can be considered that they have same file contents.
+
+### HMACs
+
+HMAC (Keyed-Hash Message Authentication Code) is a type of message authentication code (MAC) that uses a cryptographic hash function with a secret key to verify the authenticity and integrity of data.
+
+The server usually uses the private key to encrypt the message. 
+
+The following steps give you a fair idea of how HMAC works. 
+
+![[Pasted image 20250124110729.png]]
+
+1. The secret $key$ is padded to the block size of the $hash\ function$.
+2. The padded $key$ is XORed with a constant $ipad$,
+3. The message is hashed using the hash function with the XORed key.
+4. The result from Step 3 is then hashed again with the same hash function but using the padded key XORed with another constant.
+5. 1. The final output is the HMAC value, typically a fixed-size string.
+
+Technically speaking, the HMAC function is calculated using the following expression.
+
+$$
+HMAC (K, M) = H(\space(K \oplus opad\space)\space||\space H(\space(K\oplus ipad) \space|| \space M \space))
+$$
+
+## Conclusion
+
+Before moving on, we should distinguish between **hashing**, **encoding** and **encryption**.
+
+Hashing should not be confused with encryption or encoding; hashing is one-way, and you can’t reverse the process to get the original data.
+
+Hashing should not be confused with encryption or encoding; hashing is one-way, and you can’t reverse the process to get the original data.
+
+Only **encryption**, which we covered in the previous rooms, protects data confidentiality using a cryptographic cipher and a key. Encryption is reversible, provided we know the cipher and can access the key.
+
+More in-depth info about cryptography, consider this [room](https://tryhackme.com/r/room/cryptographyintro).
+

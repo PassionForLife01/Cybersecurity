@@ -29,3 +29,18 @@ $(C)^E \mod N = P$
 于是得到最后的
 Public Key: $(3, 33)$
 Private Key: $(7, 33)$ 
+
+Let's give it a quick review:
+1. Choose two primes $p$ and $q$ 
+2. $n = p \times q$ 
+3. Calculate $\phi(n) = n - p - q + 1 = (p - 1)(q - 1)$
+4. Choose $e$, where $1 < e < \phi(n)$ and prime to $\phi(n)$ 
+5. Choose $d$, such that $e \times d = 1 \bmod \phi(n)$, or $d = e^{-1} \bmod \phi(n)$ 
+6. Generate public key $(n, e)$
+7. Generate private key $(n, d)$
+8. Encrypt plaintext $m$ with $c = m^e \bmod n$ 
+9. Decrypt ciphertext $c$ with $m = c^d \bmod n$ 
+
+In addition:
+- Generate signature: $s = m^d \bmod n$
+- Check the signature $m = s^e \bmod n$ 
